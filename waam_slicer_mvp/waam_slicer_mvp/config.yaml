@@ -1,0 +1,53 @@
+# WAAM SLICER MVP SETTINGS
+
+slicing:
+  z_min: 1.5
+  layer_height_H: 1.5
+
+toolpath:
+  bead_width_W: 4.0
+  offset_factor: 0.737
+  contour_direction: CW   # CW, CCW, or ALTERNATE
+  min_polygon_area: 0.20
+  simplify_tolerance: 0.01
+
+coordinate_system:
+  cad_origin: [0.0, 0.0, 0.0]
+  machine_origin: [0.0, 0.0, 0.0]
+
+export:
+  csv_path: output/toolpath.csv
+  save_layer_images: true
+  image_dir: output/layers
+
+gcode:
+  enabled: true
+  output_path: output/toolpath.gcode
+  deposition_feedrate: 400.0
+  travel_feedrate: 2500.0
+  safe_z_clearance: 5.0
+  arc_start_command: "ARC_ON"
+  arc_stop_command: "ARC_OFF"
+  arc_start_dwell_ms: 500
+  arc_stop_dwell_ms: 300
+adaptive_control:
+
+  enabled: true
+
+  # Raspberry Pi / Moonraker address
+  moonraker_url: "http://192.168.0.2:7125"
+
+  # Klipper macro created for touching the previous layer
+  touch_macro: "LAYER_TOUCH"
+
+  # Lift after contact [mm]
+  touch_lift: 0.1
+
+  # Touch / probe speed [mm/s]
+  probe_speed: 0.5
+
+  # Maximum time Python waits for Klipper
+  request_timeout: 120
+
+  # Extra correction if needed later
+  z_correction_offset: 0.0
