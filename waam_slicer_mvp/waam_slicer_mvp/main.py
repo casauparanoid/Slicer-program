@@ -1,3 +1,4 @@
+from pathlib import Path
 from tkinter import Tk, filedialog
 
 from waam_slicer.config import load_config
@@ -28,7 +29,7 @@ def select_stl_file():
 
 def main():
     # Load configuration
-    cfg = load_config("config.yaml")
+    cfg = load_config(Path(__file__).resolve().with_name("config.yaml"))
 
     # Select STL file
     stl_path = select_stl_file()
